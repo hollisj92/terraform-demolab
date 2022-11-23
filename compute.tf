@@ -52,5 +52,5 @@ data "aws_ami" "updated_ami" {
 }
 
 output "aws_ami_id" {
-  value = data.aws_ami.updated_ami
+  value = data.aws_ami.updated_ami.id
 }
