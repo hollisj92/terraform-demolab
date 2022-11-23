@@ -1,5 +1,6 @@
 resource "aws_instance" "lab1" {
-  ami = "${data.aws_ami.updated_ami}"
+  # ami = "${data.aws_ami.updated_ami.id}"
+  ami = data.aws_ami.updated_ami.id
   instance_type = var.instance_type
   subnet_id = aws_subnet.demo_subnet_1.id
   vpc_security_group_ids = [ aws_security_group.demo_sg.id ]
@@ -25,7 +26,7 @@ resource "aws_instance" "lab1" {
   tags = {
         Env: "${var.env_prefix}"
         Service: "${var.env_prefix}-lab-demo"
-        Name : "${var.env_prefix}-Lab1"
+        Name : "${var.env_prefix}-lab1"
         Role: "${var.env_prefix}-webserver"
         Team: "team-${var.team}"
     
@@ -71,7 +72,7 @@ data "aws_ami" "updated_ami" {
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-kernel-5.10-hvm-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-*"]
   }
 
   filter {
@@ -83,4 +84,8 @@ data "aws_ami" "updated_ami" {
 
 output "aws_ami_id" {
   value = data.aws_ami.updated_ami.id
+}
+
+output "aws_ec2_lab1_pubip" {
+  value = resource.aws_instance.lab1.public_ip
 }

@@ -10,7 +10,10 @@ resource "aws_subnet" "demo_subnet_1" {
     cidr_block = var.subnet_cidr_block
     availability_zone = var.az
     tags = {
-        Name : "${var.env_prefix}-subnet-1"
+        Env: "${var.env_prefix}"
+        Service: "${var.env_prefix}-subnet-demo"
+        Name : "${var.env_prefix}-subnet1"
+        Role: "${var.env_prefix}-subnet"
+        Team: "team-${var.team}"
     }
-    
 }
