@@ -1,7 +1,6 @@
 resource "aws_vpc" "demo_vpc" {
-    cidr_block = var.cidr-cidr_block[0].cidr_block
+    cidr_block = var.vpc_cidr_block[0].cidr_block
     tags = {
-      "Environment" = "Production"
       Name : "${var.env_prefix}-vpc"
     }
 }
