@@ -5,7 +5,7 @@ resource "aws_vpc" "demo_vpc" {
     }
 }
 
-resource "aws_subnet" "demo_subnet-1" {
+resource "aws_subnet" "demo_subnet_1" {
     vpc_id = aws_vpc.demo_vpc.id
     cidr_block = var.subnet_cidr_block
     availability_zone = var.az
