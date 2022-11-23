@@ -18,6 +18,11 @@ variable "my_ip" {
     sensitive = true
     type = string
 }
+variable "ec2_ami" {
+    description = "ec2_ami"
+    sensitive = true
+    type = string
+}
 variable "vpc_cidr_block" {
     description = "vpc_cidr_block"
     sensitive = true
