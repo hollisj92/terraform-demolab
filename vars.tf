@@ -3,6 +3,7 @@ variable "region" {
     sensitive = true
     type = string
 }
+# ---------------- sensistive info
 variable "access_key" {
     description = "access_key"
     sensitive = true
@@ -13,16 +14,7 @@ variable "secret_key" {
     sensitive = true
     type = string
 }
-variable "my_ip" {
-    description = "my_ip"
-    sensitive = true
-    type = string
-}
-variable "ec2_ami" {
-    description = "ec2_ami"
-    sensitive = true
-    type = string
-}
+# ---------------- vpc/subnet/routing
 variable "vpc_cidr_block" {
     description = "vpc_cidr_block"
     sensitive = true
@@ -43,9 +35,31 @@ variable "env_prefix" {
     sensitive = true
     type = string
 }
+# ---------------- compute
+variable "instance_type" {
+    description = "instance_type"
+    sensitive = true
+    type = string
+}
+variable "ec2_ami" {
+    description = "ec2_ami"
+    sensitive = true
+    type = string
+}
 # ---------------- shortcuts
 variable "open_cidr" {
   description = "open cidrblock for shorthand"
     sensitive = false
+    type = string
+}
+variable "my_ip" {
+    description = "my_ip"
+    sensitive = true
+    type = string
+}
+# ---------------- common tags
+variable "team" {
+    description = "Team"
+    sensitive = true
     type = string
 }
