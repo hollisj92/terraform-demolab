@@ -33,3 +33,9 @@ variable "env_prefix" {
     sensitive = true
     type = string
 }
+# ---------------- shortcuts
+variable "open_cidr" {
+  description = "open cidrblock for shorthand"
+    sensitive = false
+    type = string
+}
