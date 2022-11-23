@@ -13,6 +13,11 @@ variable "secret_key" {
     sensitive = true
     type = string
 }
+variable "my_ip" {
+    description = "my_ip"
+    sensitive = true
+    type = string
+}
 variable "vpc_cidr_block" {
     description = "vpc_cidr_block"
     sensitive = true
