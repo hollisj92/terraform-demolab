@@ -1,7 +1,9 @@
 resource "aws_instance" "lab1" {
-  ami = data.aws_ami.updated_ami.id
-  instance_type = var.instance_type
-  subnet_id = module.routing.routing_module_subnet.id
+  # ami = data.aws_ami.updated_ami.id
+  # instance_type = var.instance_type
+  ami = "ami-08c40ec9ead489470"
+  instance_type = "t2.micro"
+  subnet_id = var.subnet_id
   vpc_security_group_ids = [ aws_security_group.demo_sg.id ]
   availability_zone = var.az
   associate_public_ip_address = true
@@ -24,7 +26,7 @@ resource "aws_instance" "lab1" {
 }
 
 resource "aws_security_group" "demo_sg" {
-    vpc_id = module.routing.routing_module_vpc.id
+    vpc_id = var.vpc_id
     name = "demo_sg"
 
     ingress {
@@ -42,11 +44,13 @@ resource "aws_security_group" "demo_sg" {
     }
 
     egress {
-        from_port = 8080
-        to_port = 8080
-        protocol = "tcp"
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
         cidr_blocks = [var.open_cidr]
+        prefix_list_ids = []
     }
+
 
 
 
@@ -60,30 +64,17 @@ resource "aws_security_group" "demo_sg" {
     }
 }
 
-data "aws_ami" "updated_ami" {
-    most_recent = true
-    owners = ["amazon"]
+# data "aws_ami" "updated_ami" {
+#     most_recent = true
+#     owners = ["amazon"]
 
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-*"]
-  }
+#   filter {
+#     name   = "name"
+#     values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-*"]
+#   }
 
-  filter {
-    name = "virtualization-type"
-    values = ["hvm"]
-  }
-
-}
-
-module "routing" {
-  source = "../routing"
-  vpc_cidr_block = var.vpc_cidr_block
-  subnet_cidr_block = var.subnet_cidr_block
-  az = var.az
-  env_prefix = var.env_prefix
-  team = var.team
-  open_cidr = var.open_cidr
-  instance_type = var.instance_type
-  ec2_ami = var.ec2_ami
-}
+#   filter {
+#     name = "virtualization-type"
+#     values = ["hvm"]
+#   }
+# }

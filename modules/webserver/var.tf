@@ -15,8 +15,8 @@ variable "vpc_cidr_block" {
     sensitive = true
     type = string
 }
-variable "subnet_cidr_block" {
-    description = "subnet_cidr_block"
+variable "subnet_id" {
+    description = "subnet_id"
     sensitive = true
     type = string
 }
@@ -32,7 +32,7 @@ variable "env_prefix" {
 }
 # ---------------- shortcuts
 variable "open_cidr" {
-    description = "open cidrblock for shorthand"
+  description = "open cidrblock for shorthand"
     sensitive = false
     type = string
 }
@@ -42,3 +42,5 @@ variable "team" {
     sensitive = true
     type = string
 }
+
+variable "vpc_id" {}

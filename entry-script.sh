@@ -1,6 +1,10 @@
 #!/bin/bash
-sudo apt update -y
-sudo yum update -y && sudo yum install -y docker
-sudo systemctl start docker 
-sudo usermod -aG docker ec2-user
+sudo apt upgrade -y
+sudo apt-get update -y && sudo snap install docker
+sudo addgroup --system docker
+sudo adduser $USER docker
+newgrp docker
+sudo docker run hello-world
+sudo snap start docker
+sudo usermod -aG docker ubuntu
 docker run -p 8080:80 nginx
