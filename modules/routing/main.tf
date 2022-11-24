@@ -14,8 +14,13 @@ resource "aws_internet_gateway" "demo_igw" {
 resource "aws_vpc" "demo_vpc" {
     cidr_block = var.vpc_cidr_block
     tags = {
-      Name : "${var.env_prefix}-vpc"
-    }
+        Env: "${var.env_prefix}"
+        Service: "${var.env_prefix}-demo_vpc-demo"
+        Name : "${var.env_prefix}-demo_vpc"
+        Role: "${var.env_prefix}-demo_vpc"
+        Team: "team-${var.team}"
+    
+  }
 }
 
 resource "aws_route_table" "demo_route_table" {

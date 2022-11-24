@@ -57,6 +57,7 @@ variable "my_ip" {
     sensitive = true
     type = string
 }
+
 # ---------------- common tags
 variable "team" {
     description = "Team"
