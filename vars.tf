@@ -52,11 +52,6 @@ variable "open_cidr" {
     sensitive = false
     type = string
 }
-# variable "my_ip" {
-#     description = "my_ip"
-#     sensitive = true
-#     type = string
-# }
 
 # ---------------- common tags
 variable "team" {

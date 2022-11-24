@@ -22,10 +22,8 @@ module "demo_routing" {
   env_prefix = var.env_prefix
   team = var.team
   open_cidr = var.open_cidr
-  my_ip = var.my_ip
   instance_type = var.instance_type
   ec2_ami = var.ec2_ami
-
 }
 
 module "demo_webserver" {

@@ -50,10 +50,14 @@ resource "aws_security_group" "demo_sg" {
 
 
 
-      tags = {
-        Name : "${var.env_prefix}-secg"
+    tags = {
+        Env: "${var.env_prefix}"
+        Service: "${var.env_prefix}-lab1-secgroup-demo"
+        Name : "${var.env_prefix}-secgroup"
+        Role: "${var.env_prefix}-secgroup"
+        Team: "team-${var.team}"
+    
     }
-  
 }
 
 data "aws_ami" "updated_ami" {

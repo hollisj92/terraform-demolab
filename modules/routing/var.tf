@@ -25,8 +25,6 @@ variable "open_cidr" {
     sensitive = false
     type = string
 }
-
-
 # ---------------- compute
 variable "instance_type" {
     description = "instance_type"

@@ -32,16 +32,10 @@ variable "env_prefix" {
 }
 # ---------------- shortcuts
 variable "open_cidr" {
-  description = "open cidrblock for shorthand"
+    description = "open cidrblock for shorthand"
     sensitive = false
     type = string
 }
-variable "my_ip" {
-    description = "my_ip"
-    sensitive = true
-    type = string
-}
-
 # ---------------- common tags
 variable "team" {
     description = "Team"
