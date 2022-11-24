@@ -25,6 +25,7 @@ module "demo_routing" {
   my_ip = var.my_ip
   instance_type = var.instance_type
   ec2_ami = var.ec2_ami
+
 }
 
 module "demo_webserver" {
@@ -37,5 +38,4 @@ module "demo_webserver" {
   env_prefix = var.env_prefix
   az = var.az
   subnet_cidr_block = var.subnet_cidr_block
-  my_ip = var.my_ip
 }

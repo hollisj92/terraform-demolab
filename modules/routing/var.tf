@@ -26,13 +26,6 @@ variable "open_cidr" {
     type = string
 }
 
-variable "my_ip" {
-  description = "my_ip"
-    sensitive = false
-    type = string
-}
-
-
 
 # ---------------- compute
 variable "instance_type" {
