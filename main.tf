@@ -1,12 +1,47 @@
+
 terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.0"
     }
-    backend "s3" {
-      bucket = "remote_state_bucket_${var.s3bucketstring}"
+  }
+  # you must pass your credentials with --backend-config at this point, this block does not support variables
+  backend "s3" {
+    bucket = "BUCKET-NAME-HERE"
+    key = "global/s3/terraform.tfstate"
+    region = "us-east-1"
+    dynamodb_table = "terraform-state-locking"
+    encrypt = true
+  }
+}
+
+resource "aws_s3_bucket" "tf-state" {
+  bucket = "BUCKET-NAME-HERE"
+  lifecycle {
+    prevent_destroy = true
+
+  }
+  versioning{
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
     }
+  }
+}
+
+resource "aws_dynamodb_table" "terraform_locks" {
+  name = "terraform-state-locking"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key = "LockID"
+  attribute {
+    name = "LockID"
+    type = "S"
   }
 }
 

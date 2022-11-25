@@ -14,7 +14,7 @@ variable "secret_key" {
     sensitive = true
     type = string
 }
-variable "s3bucketstring" {
+variable "tf_state_bucket" {
     description = "randomized bucket name string"
     sensitive = true
     type = string
