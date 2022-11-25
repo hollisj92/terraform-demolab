@@ -7,17 +7,19 @@ terraform {
     }
   }
   # you must pass your credentials with --backend-config at this point, this block does not support variables
-  backend "s3" {
-    bucket = "BUCKET-NAME-HERE"
-    key = "global/s3/terraform.tfstate"
-    region = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
-    encrypt = true
-  }
+  # best practice would be to set a variable for this bucket name - this would have to be done in the form of a module
+  # in order for your s3 bucket to be handled as your s3 state you must provision the s3 bucket in your local state then use init --migrate to switch to the remote state
+  # backend "s3" {
+  #   bucket = "SETBUCKETNAME"
+  #   key = "global/s3/terraform.tfstate"
+  #   region = "us-east-1"
+  #   dynamodb_table = "terraform-state-locking"
+  #   encrypt = true
+  # }
 }
 
 resource "aws_s3_bucket" "tf-state" {
-  bucket = "BUCKET-NAME-HERE"
+  bucket = "SETBUCKETNAME"
   lifecycle {
     prevent_destroy = true
 
