@@ -4,6 +4,9 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.0"
     }
+    backend "s3" {
+      bucket = "remote_state_bucket_${var.s3bucketstring}"
+    }
   }
 }
 

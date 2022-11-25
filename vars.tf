@@ -14,6 +14,11 @@ variable "secret_key" {
     sensitive = true
     type = string
 }
+variable "s3bucketstring" {
+    description = "randomized bucket name string"
+    sensitive = true
+    type = string
+}
 # ---------------- vpc/subnet/routing
 variable "vpc_cidr_block" {
     description = "vpc_cidr_block"
